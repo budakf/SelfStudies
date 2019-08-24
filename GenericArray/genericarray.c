@@ -58,11 +58,12 @@ int main(){
     push_back(array, &first );
     push_back(array, &first );
     push_back(array, &first );
-    printf( "%d \n", *((int *)array->container[0]) );
     pop_back(array);
     push_back(array, &second );
+    
+    printf( "%d \n", *((int *)array->container[0]) );
     printf( "%c\n", *((char *)array->container[4]) );
-    printf( "%d\n%d\n", array->size, array->capacity );
+    printf( "size:%d\ncapacity:%d\n", array->size, array->capacity );
 
     return 0;
 }
