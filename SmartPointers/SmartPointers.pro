@@ -6,7 +6,8 @@ CONFIG -= qt
 SOURCES += \
         main.cpp \
         referencecounter.cpp \
-        sharedptr.cpp
+        sharedptr.cpp \
+        uniqueptr.cpp
 
 HEADERS += \
     referencecounter.h
