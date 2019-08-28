@@ -41,6 +41,13 @@ class UniquePtr{
             return os;
         }
 
+
+        T * release(){
+            T * temp = nullptr;
+            std::swap(mPtr, temp);
+            return temp;
+        }
+
         T * get(){ return mPtr; }
         void set2nullptr(){ mPtr = nullptr; }
         bool isNullptr(){ return mPtr == nullptr; }
@@ -58,5 +65,6 @@ class UniquePtr{
             mPtr = uPtr.get();
             uPtr.set(temp);
         }
+
 
 };

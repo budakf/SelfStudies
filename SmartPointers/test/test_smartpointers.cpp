@@ -72,19 +72,22 @@ private slots:
 
     void test_uniquePtr(){
 
-        UniquePtr<int> u_ptr;
+        UniquePtr<double> u_ptr;
         QCOMPARE(u_ptr.get(), nullptr);
         if(u_ptr.isNullptr())
             std::cout<<"u_ptr is nullptr"<<std::endl;
 
-        UniquePtr<int> u_ptr2{new int {7}};
-        QCOMPARE(*(u_ptr2.get()), 7);
+        UniquePtr<double> u_ptr2{new double {7.65}};
+        QCOMPARE(*(u_ptr2.get()), 7.65);
 
-        UniquePtr<int> u_ptr3(new int{9});
-        QCOMPARE(*(u_ptr3.get()), 9);
+        UniquePtr<double> u_ptr3(new double{9.4});
+        QCOMPARE(*(u_ptr3.get()), 9.4);
 
-//        UniquePtr<int> u_ptr4{ std::move(u_ptr3) };
-//        QCOMPARE(*(u_ptr4.get()), 9);
+        UniquePtr<double> u_ptr4{ u_ptr3.release() };
+        QCOMPARE(*(u_ptr4.get()), 9.4);
+        QCOMPARE(u_ptr3.get(), nullptr);
+
+
 
     }
 
