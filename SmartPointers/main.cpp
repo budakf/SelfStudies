@@ -1,20 +1,43 @@
 #include <iostream>
+#include <QtTest/QtTest>
 
 #include "sharedptr.cpp"
+#include "uniqueptr.cpp"
 
 using namespace std;
 
-int main(){
+#define TEST
 
-    int * a = new int(15);
-    SharedPtr<int> ptr{a};
-    std::cout << ptr << std::endl;
+#ifndef TEST
+    int main(){
 
-    SharedPtr<int> ptr2 = ptr;
+        //int * a = new int(15);
+        SharedPtr<int> ptr{new int(15)};
+        std::cout << ptr;
 
-    std::cout << ptr << std::endl;
-    std::cout << ptr2 << std::endl;
+        SharedPtr<int> ptr2 = ptr;
 
-    return 0;
+        std::cout << ptr << ptr2;
 
-}
+        SharedPtr<int> pptr{nullptr};
+        {
+            SharedPtr<int> pptr2 = pptr;
+        }
+
+    //    int * a = new int(12);
+    //    UniquePtr<int> uPtr{a};
+    //    UniquePtr<int> uPtr2{std::move(uPtr)};
+
+    //    if(!uPtr.isNullptr())
+    //         std::cout<< uPtr;
+
+    //    std::cout<< uPtr2;
+
+
+        return 0;
+
+    }
+
+
+#endif
+

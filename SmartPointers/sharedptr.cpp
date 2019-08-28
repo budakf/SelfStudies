@@ -8,7 +8,7 @@
 template <typename T>
 class SharedPtr{
     public:
-        SharedPtr(T * _ptr = nullptr){
+        explicit SharedPtr(T * _ptr = nullptr){
             mPtr = _ptr;
             mCounter = new ReferenceCounter();
             if(mPtr)
@@ -24,10 +24,8 @@ class SharedPtr{
         ~SharedPtr(){
             --(*mCounter);
             if(mCounter->get() == 0) {
-                if(mPtr != nullptr){
-                    delete mPtr;
-                    delete mCounter;
-                }
+                delete mPtr;
+                delete mCounter;
             }
         }
 
@@ -35,13 +33,29 @@ class SharedPtr{
         int use_count() const { return mCounter->get();}
 
         friend std::ostream & operator<<(std::ostream & os , SharedPtr<T> & sPtr ){
-            os << sPtr.get() << "  " << *(sPtr.get()) << "  " << *(sPtr.mCounter);
+            os << sPtr.get() << "  " << *(sPtr.get()) << "  " << *(sPtr.mCounter) << std::endl;
             return os;
         }
 
+        void set(T * sPtr){
+            if(mPtr){
+                delete mPtr;
+                delete mCounter;
+            }
+
+            mPtr = sPtr;
+            mCounter = new ReferenceCounter();
+            if(mPtr)
+                (*mCounter)++;
+        }
+
+        void reset(){
+            this->set(nullptr);
+        }
+
     private:
-        ReferenceCounter *mCounter;
-        T * mPtr;
+        ReferenceCounter *mCounter = nullptr;
+        T * mPtr = nullptr;
 };
 
 #endif // SHAREDPTR_H

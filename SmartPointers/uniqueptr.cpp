@@ -19,21 +19,19 @@ class UniquePtr{
         UniquePtr<T> & operator=(const UniquePtr<T> &) = delete;
 
         ~UniquePtr(){
-            if(mPtr)
-                delete mPtr;
+            if(mPtr)    delete mPtr;
         }
 
         UniquePtr(UniquePtr<T> && uPtr){
-            if(mPtr) delete mPtr; // for avoid memory leak
-
-            mPtr = std::move(uPtr.get());
+            if(mPtr) delete mPtr; // avoid memory leak
+            this->swap(uPtr);
             uPtr.set2nullptr();
         }
 
-        UniquePtr<T> && operator=(UniquePtr<T> && uPtr){
-            if(mPtr) delete mPtr; // for avoid memory leak
+        UniquePtr<T> & operator=(UniquePtr<T> && uPtr){
+            if(mPtr) delete mPtr; //  avoid memory leak
 
-            mPtr = std::move(uPtr.get());
+            this->swap(uPtr);
             uPtr.set2nullptr();
             return *this;
         }
@@ -49,5 +47,16 @@ class UniquePtr{
 
     private:
         T * mPtr;
+
+        void set(T * ptr){
+            if(mPtr) delete mPtr;
+            mPtr = ptr;
+        }
+
+        void swap(UniquePtr<T> & uPtr){
+            T * temp = mPtr;
+            mPtr = uPtr.get();
+            uPtr.set(temp);
+        }
 
 };

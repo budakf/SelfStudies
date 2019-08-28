@@ -42,8 +42,3 @@ ReferenceCounter  ReferenceCounter::operator--(int){ // Postfix Object--
     (this->mcounter)--;
     return temp;
 }
-
-
-
-
-
