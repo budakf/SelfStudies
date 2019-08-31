@@ -4,7 +4,6 @@
 #include "sharedptr.cpp"
 #include "uniqueptr.cpp"
 #include "referencecounter.h"
-#include <memory>
 
 class TestSmartPointers : public QObject{
     Q_OBJECT
@@ -86,8 +85,6 @@ private slots:
         UniquePtr<double> u_ptr4{ u_ptr3.release() };
         QCOMPARE(*(u_ptr4.get()), 9.4);
         QCOMPARE(u_ptr3.get(), nullptr);
-
-
 
     }
 
