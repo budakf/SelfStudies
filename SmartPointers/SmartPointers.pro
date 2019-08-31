@@ -6,8 +6,6 @@ CONFIG += testcase console c++17
 CONFIG -= app_bundle
 TARGET = SmartPointers
 
-
-
 SOURCES += \
         main.cpp \
         referencecounter.cpp \
