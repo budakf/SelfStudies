@@ -48,6 +48,10 @@ public:
         return *mPtr;
     }
 
+    T * get(){
+        return mPtr;
+    }
+
     void advance(unsigned int number){
         mPtr+=number;
     }
