@@ -20,9 +20,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         myIterator.cpp \
+        myList.cpp \
         myVector.cpp \
-        mylist.cpp \
         test/test_main.cpp \
+        test/test_mylist.cpp \
         test/test_myvector.cpp \
         test/test_myiterator.cpp
 
