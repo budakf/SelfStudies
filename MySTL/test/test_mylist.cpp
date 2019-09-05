@@ -91,6 +91,18 @@ private slots:
         intList.insert(node6, 0);
         QCOMPARE(intList.length(), 8);
         QCOMPARE(*(intList.front()->mData), 234);
+
+        int * data7 = new int{999};
+        Node<int> *node7 = new Node<int>{data7};
+        intList.insert(node7, 55);
+        QCOMPARE(intList.length(), 9);
+        QCOMPARE(*(intList.back()->mData), 999);
+
+        int * data8 = new int{5445};
+        Node<int> *node8 = new Node<int>{data8};
+        intList.insert(node8, 10);
+        QCOMPARE(intList.length(), 10);
+        QCOMPARE(*(intList.back()->mData), 5445);
     }
 
     void test_begin_end(){
