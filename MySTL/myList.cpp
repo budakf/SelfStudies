@@ -59,6 +59,7 @@ public:
         else if(pIndex == 0){
             newNode->next = mHead;
             mHead = newNode;
+            mLength++;
         }
         else{
             Node<T> * temp = mHead;
@@ -68,8 +69,9 @@ public:
             Node<T> * oldNodeAtPIndex = temp->next;
             temp->next = newNode;
             newNode->next = oldNodeAtPIndex;
+            mLength++;
         }
-        mLength++;
+
     }
 
     MyIterator< Node<T> > * begin(){
