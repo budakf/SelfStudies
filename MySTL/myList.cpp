@@ -52,6 +52,26 @@ public:
         mLength++;
     }
 
+    void insert(Node<T> * newNode, unsigned int pIndex){
+        if(pIndex >= mLength)
+            pushBack(newNode);
+
+        else if(pIndex == 0){
+            newNode->next = mHead;
+            mHead = newNode;
+        }
+        else{
+            Node<T> * temp = mHead;
+            for(unsigned int i = 0; i < (pIndex-1); i++){
+                temp = temp->next;
+            }
+            Node<T> * oldNodeAtPIndex = temp->next;
+            temp->next = newNode;
+            newNode->next = oldNodeAtPIndex;
+        }
+        mLength++;
+    }
+
     MyIterator< Node<T> > * begin(){
         return makeIterator(mHead);
     }
