@@ -11,6 +11,9 @@ struct Node{
     T * mData;
     Node<T> * next;
     Node(T * pData) : mData(pData), next(nullptr){}
+    ~Node(){
+        delete mData;
+    }
 
 };
 
@@ -20,6 +23,11 @@ class MyList{
 public:
     explicit MyList(Node<T> * pHead = nullptr) : mHead(pHead){
         mLength = (mHead == nullptr) ? 0 : 1;
+    }
+
+    ~MyList(){ // Destructs node recursively
+        destructNodes(mHead);
+        delete mHead;
     }
 
     Node<T> * front(){
@@ -86,11 +94,19 @@ public:
 private:
     Node<T> * mHead;
     unsigned int mLength;
+
     MyIterator< Node<T> > * makeIterator(Node<T> * node){
         MyIterator< Node<T> > * it = new MyIterator< Node<T> >{node};
         return it;
     }
 
+    void destructNodes(Node<T> * node){
+        Node<T> * currentNode = node->next;
+        while(currentNode){
+            destructNodes(currentNode);
+            currentNode = currentNode->next;
+        }
+    }
 
 };
 
