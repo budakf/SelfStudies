@@ -121,6 +121,27 @@ private slots:
 
     }
 
+    void test_destructor(){
+        {
+            MyList<int> *intList2 = new MyList<int>{};
+        }
+        int * data = new int{76};
+        Node<int> *node = new Node<int>{data};
+
+        int * data2 = new int{756};
+        Node<int> *node2 = new Node<int>{data2};
+
+        int * data3= new int{756};
+        Node<int> *node3 = new Node<int>{data3};
+        {
+            MyList<int> *intList3 = new MyList<int>{node};
+            intList3->insert(node2,0);
+            intList3->pushBack(node3);
+        }
+        std::cout<<"Test Destructor"<<std::endl;
+
+    }
+
 
 };
 

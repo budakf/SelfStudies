@@ -128,13 +128,13 @@ private:
         }
     }
 
-    void leftShift(unsigned int pIndex){  // for erase function
+    void leftShift(unsigned int pIndex){  // assist function for erase operation
         for(unsigned int i = pIndex; i < *mSize ; i++){
             mArray[i] = mArray[i+1];
         }
     }
 
-    void rightShift(unsigned int pIndex){  // for insert function
+    void rightShift(unsigned int pIndex){  // assist function for insert operation
         if(*mSize > *mCapacity)
             enhanceCapacity();
         for(unsigned int i = (*mSize)-1; i > pIndex ; i--){
