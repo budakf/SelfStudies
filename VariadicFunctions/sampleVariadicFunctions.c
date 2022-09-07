@@ -1,5 +1,8 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include<stdarg.h>
+#include<string.h>
+#include <ctype.h>
 
 void print(char * format, ...){
 
@@ -15,7 +18,7 @@ void print(char * format, ...){
         }
 
         if(chr == 'C'){
-            char character = va_arg(args, char);
+            char character = va_arg(args, int);
             printf("%c",character);
         }
 
@@ -91,7 +94,7 @@ char ** makeStringList(char * firstString, ...){
     va_copy(backupArgs, args);
 
     char * temp;
-    int count = 0;
+    int count = 1; // because first element is firstString
     while((temp = va_arg(args, char *))!= NULL){
         ++count;
     }
@@ -106,7 +109,7 @@ char ** makeStringList(char * firstString, ...){
         resultStringList[index] = malloc( sizeof(char) * strlen(temp)+1);
         strcpy(resultStringList[index], temp);
     }
-    
+
     va_end(backupArgs);
 
     return resultStringList;
@@ -126,6 +129,11 @@ int main(){
     printf( "%s \n", stringList[1]);
     printf( "%s \n", stringList[2]);
     printf( "%s \n", stringList[3]);
+
+    free(stringList[0]);
+    free(stringList[1]);
+    free(stringList[2]);
+    free(stringList[3]);
 
     return 0;
 }
