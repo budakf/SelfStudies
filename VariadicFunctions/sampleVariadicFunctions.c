@@ -130,10 +130,11 @@ int main(){
     printf( "%s \n", stringList[2]);
     printf( "%s \n", stringList[3]);
 
-    free(stringList[0]);
-    free(stringList[1]);
-    free(stringList[2]);
-    free(stringList[3]);
+    int count = 4;
+    for(int index = 0; index < count; ++index)
+    {
+        free(stringList[index]);
+    }
 
     return 0;
 }
